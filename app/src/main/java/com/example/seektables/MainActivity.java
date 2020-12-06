@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView myListView = findViewById(R.id.myListView);
         ArrayList<String> table = new ArrayList<>();
-        for(int j=1;j<=10;j++){
+        for(int j=1;j<=20;j++){
             table.add(1 + " X " + j + " = " + 1*j);
         }
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 table.clear();
                 int a = progress + 1;
-                for(int i=1;i<=10;i++){
+                for(int i=1;i<=20;i++){
                     table.add(a + " X " + i + " = " + a*i);
                 }
                 myListView.setAdapter(arrayAdapter);
