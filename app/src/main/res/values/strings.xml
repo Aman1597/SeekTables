@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Seek Tables</string>
-    <string name="heading">Multiplication Tables: 1 &#8211; 20</string>
+    <string name="headingEX">Multiplication Tables: 1 &#8211; 20</string>
+    <string name="heading">Multiplication Table of: </string>
+    <string name="heading2">Up To:</string>
+    <string name="hint1">Enter a Number</string>
+    <string name="hint2">Enter range</string>
 </resources>

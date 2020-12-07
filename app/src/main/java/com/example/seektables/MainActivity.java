@@ -3,13 +3,19 @@ package com.example.seektables;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    //int num1=1, num2 = 20;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,4 +56,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+//    public void printTable(View view){
+//        EditText ed1=findViewById(R.id.editTextNumber);
+//        num1 = Integer.parseInt( ed1.getText().toString());
+//        EditText ed2=findViewById(R.id.editTextNumber2);
+//        num2 = Integer.parseInt( ed2.getText().toString());
+//        if(num1>=1 && num1<=20){
+//            int p = num1-1;
+//            seekBar.setProgress(p);
+//        }
+//        table.clear();
+//        for(int i=1;i<=num2;i++){
+//            table.add(num1 + " X " + i + " = " + num1*i);
+//        }
+//        myListView.setAdapter(arrayAdapter);
+//    }
 }
