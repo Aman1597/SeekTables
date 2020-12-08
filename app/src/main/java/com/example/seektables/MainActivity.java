@@ -8,41 +8,53 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    //int num1=1, num2 = 20;
-
-
-
+    int num1=1, num2 = 20;
+    ListView myListView;
+    ArrayList<String> table = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+    SeekBar seekBar;
+    TextView lowerLimit, upperLimit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView myListView = findViewById(R.id.myListView);
-        ArrayList<String> table = new ArrayList<>();
-        for(int j=1;j<=20;j++){
+        myListView = findViewById(R.id.myListView);
+
+        for(int j=1;j<=num2;j++){
             table.add(1 + " X " + j + " = " + 1*j);
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, table);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, table);
         myListView.setAdapter(arrayAdapter);
 
-        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar = findViewById(R.id.seekBar);
         seekBar.setMax(19);
+        lowerLimit = findViewById(R.id.lowerLimit);
+        upperLimit = findViewById(R.id.upperLimit);
+        lowerLimit.setText("1");
+        upperLimit.setText(""+20);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                table.clear();
-                int a = progress + 1;
-                for(int i=1;i<=20;i++){
-                    table.add(a + " X " + i + " = " + a*i);
+                if(fromUser){
+                    table.clear();
+                    int a = progress + 1;
+                    for(int i=1;i<=num2;i++){
+                        table.add(a + " X " + i + " = " + a*i);
+                    }
+                    myListView.setAdapter(arrayAdapter);
                 }
-                myListView.setAdapter(arrayAdapter);
+
+
             }
 
             @Override
@@ -56,19 +68,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-//    public void printTable(View view){
-//        EditText ed1=findViewById(R.id.editTextNumber);
-//        num1 = Integer.parseInt( ed1.getText().toString());
-//        EditText ed2=findViewById(R.id.editTextNumber2);
-//        num2 = Integer.parseInt( ed2.getText().toString());
-//        if(num1>=1 && num1<=20){
-//            int p = num1-1;
-//            seekBar.setProgress(p);
-//        }
-//        table.clear();
-//        for(int i=1;i<=num2;i++){
-//            table.add(num1 + " X " + i + " = " + num1*i);
-//        }
-//        myListView.setAdapter(arrayAdapter);
-//    }
+    public void printTable(View view){
+        EditText ed1=findViewById(R.id.editTextNumber);
+        num1 = Integer.parseInt( ed1.getText().toString());
+        EditText ed2=findViewById(R.id.editTextNumber2);
+        num2 = Integer.parseInt( ed2.getText().toString());
+        if(num1>=1 && num1<=20){
+            int p = num1-1;
+            seekBar.setProgress(p);
+        }
+        else{
+            int x = new Random().nextInt(95) + 5;
+            seekBar.setMax(num1+x);
+            int y = num1+x+1;
+            upperLimit.setText(""+y);
+            seekBar.setProgress(num1);
+        }
+        table.clear();
+        for(int i=1;i<=num2;i++){
+            table.add(num1 + " X " + i + " = " + num1*i);
+        }
+        myListView.setAdapter(arrayAdapter);
+    }
 }

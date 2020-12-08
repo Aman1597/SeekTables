@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/upperLimit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/seekBar"
+        app:layout_constraintTop_toBottomOf="@id/editTextNumber2" />
+
     <ListView
         android:id="@+id/myListView"
         android:layout_width="wrap_content"
@@ -15,16 +25,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/lowerLimit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/seekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNumber2" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/upperLimit"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/lowerLimit"
         app:layout_constraintTop_toBottomOf="@id/editTextNumber2" />
 
     <TextView
@@ -33,8 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
+        android:fontFamily="serif"
         android:text="@string/heading"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumber"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -46,6 +70,8 @@
         android:ems="10"
         android:hint="@string/hint1"
         android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +79,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif"
         android:text="@string/heading2"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumber2"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumber2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -67,6 +95,8 @@
         android:ems="10"
         android:hint="@string/hint2"
         android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@id/button"
         app:layout_constraintStart_toEndOf="@id/textView"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
@@ -75,6 +105,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="printTable"
         android:text="Go"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNumber2"
         app:layout_constraintEnd_toEndOf="parent"
