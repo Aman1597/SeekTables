@@ -7,4 +7,40 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="Red">#FF0000</color>
+
+    <color name="Yellow">#FFFF00</color>
+
+    <color name="Gold">#FFD700</color>
+
+    <color name="BlueVoilet">#8A2BE2</color>
+
+    <color name="DarkVoilet">#9400D3</color>
+
+    <color name="SlateBlue">#6A5ACD</color>
+
+    <color name="Indigo">#4B0082</color>
+
+    <color name="Lime">#00FF00</color>
+
+    <color name="LimeGreen">#32CD32</color>
+
+    <color name="LawnGreen">#7CFC00</color>
+
+    <color name="Green">#008000</color>
+
+    <color name="Aqua">#00FFFF</color>
+
+    <color name="SkyBlue">#87CEEB</color>
+
+    <color name="DeepSkyBlue">#00BFFF</color>
+
+    <color name="Blue">#0000FF</color>
+
+    <color name="Wheat">#F5DEB3</color>
+
+    <color name="Bisque">#FFE4C4</color>
+
+    <color name="NavajoWhite">#FFDEAD</color>
 </resources>
