@@ -4,17 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int num1=1, num2 = 20;
     Random rand = new Random();
     ListView myListView;
+    LinearLayout LLV;
     ArrayList<String> table = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     SeekBar seekBar;
@@ -38,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
         seekBar = findViewById(R.id.seekBar);
         lowerLimit = findViewById(R.id.lowerLimit);
         upperLimit = findViewById(R.id.upperLimit);
+        LLV= findViewById(R.id.LLparent);
         ed1=findViewById(R.id.editTextNumber);
         ed2=findViewById(R.id.editTextNumber2);
+        ed1.setFocusableInTouchMode(true);
+        ed2.setFocusableInTouchMode(true);
+
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, table){
             @NonNull
             @Override
@@ -76,9 +81,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void hideKeybaord(View v) {
+
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+    }
+
     public void printTable(View view){
         num1 = Integer.parseInt( ed1.getText().toString());
         num2 = Integer.parseInt( ed2.getText().toString());
+        ed2.onEditorAction(EditorInfo.IME_ACTION_DONE);
+        hideKeybaord(view);
+
         if(num1>=1 && num1<=20){
             int p = num1-1;
             seekBar.setProgress(p);
