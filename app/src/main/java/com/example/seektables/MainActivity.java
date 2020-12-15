@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -51,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView textView=(TextView) view.findViewById(android.R.id.text1);
-                //textView.setTextColor(Color.WHITE);
-
+                textView.setGravity(Gravity.CENTER);
+                textView.setTextSize(17);
+                textView.setBackgroundResource(R.drawable.gradient_background);
                 return view;//super.getView(position, convertView, parent);
             }
         };
@@ -112,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayOnList(int num1, int num2){
         table.clear();
         for(int i=1;i<=num2;i++){
-            table.add(num1 + " X " + i + " = " + num1*i);
+            table.add(num1 + "   X   " + i + "   =   " + num1*i);
         }
         int x = seekBar.getProgress() + 1;
         lowerLimit.setText(""+x);
