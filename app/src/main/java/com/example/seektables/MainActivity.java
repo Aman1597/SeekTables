@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,24 +94,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void printTable(View view){
-        num1 = Integer.parseInt( ed1.getText().toString());
-        num2 = Integer.parseInt( ed2.getText().toString());
-        ed2.onEditorAction(EditorInfo.IME_ACTION_DONE);
-        hideKeybaord(view);
 
-        if(num1>=1 && num1<=20){
-            int p = num1-1;
-            seekBar.setProgress(p);
+        String input1,input2;
+        input1 =  ed1.getText().toString();
+        input2 =  ed2.getText().toString();
+        if(input1.length() == 0 || input2.length() == 0){
+            //DO NOTHING
         }
         else{
-            int x = rand.nextInt(95) + 5;
-            seekBar.setMax(num1+x);
-            int y = num1+x+1;
-            upperLimit.setText(""+y);
-            seekBar.setProgress(num1-1);
+            num1 = Integer.parseInt(input1);
+            num2 = Integer.parseInt(input2);
+            ed2.onEditorAction(EditorInfo.IME_ACTION_DONE);
+            hideKeybaord(view);
+
+            if(num1>=1 && num1<=20){
+                int p = num1-1;
+                seekBar.setProgress(p);
+            }
+            else{
+                int x = rand.nextInt(95) + 5;
+                seekBar.setMax(num1+x);
+                int y = num1+x+1;
+                upperLimit.setText(""+y);
+                seekBar.setProgress(num1-1);
+            }
+
+            displayOnList(num1,num2);
         }
 
-        displayOnList(num1,num2);
     }
 
     public void displayOnList(int num1, int num2){
