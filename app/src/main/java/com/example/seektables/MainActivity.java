@@ -4,9 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -33,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     EditText ed1,ed2;
     TextView lowerLimit, upperLimit;
+
+    String s1 = "Required!" ;
+    ForegroundColorSpan fgcspan = new ForegroundColorSpan(Color.WHITE);
+    SpannableStringBuilder ssbuilder = new SpannableStringBuilder(s1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,17 +103,22 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
     }
 
+
     public void printTable(View view){
 
-        String input1,input2;
-        input1 =  ed1.getText().toString();
-        input2 =  ed2.getText().toString();
-        if(input1.length() == 0 || input2.length() == 0){
-            //DO NOTHING
+        ssbuilder.setSpan(fgcspan, 0, s1.length(), 0);
+
+        if(TextUtils.isEmpty(ed1.getText())){
+            ed1.requestFocus();
+            ed1.setError(ssbuilder);
+        }
+        else if(TextUtils.isEmpty(ed2.getText())){
+            ed2.requestFocus();
+            ed2.setError(ssbuilder);
         }
         else{
-            num1 = Integer.parseInt(input1);
-            num2 = Integer.parseInt(input2);
+            num1 = Integer.parseInt(ed1.getText().toString());
+            num2 = Integer.parseInt(ed2.getText().toString());
             ed2.onEditorAction(EditorInfo.IME_ACTION_DONE);
             hideKeybaord(view);
 
@@ -131,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         }
         int x = seekBar.getProgress() + 1;
         lowerLimit.setText(""+x);
-        //ed1.setText(""+x);
         myListView.setAdapter(arrayAdapter);
     }
 }
